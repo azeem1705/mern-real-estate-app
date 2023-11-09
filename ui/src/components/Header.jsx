@@ -7,6 +7,7 @@ const Header = () => {
     const toggleMenu = () => {
         setShowMenu(!showMenu);
     };
+    
 
     return (
         <header className="bg-white shadow">
@@ -43,10 +44,10 @@ const Header = () => {
                     </Link>
                 </div>
                 <div className="flex items-center justify-center w-full">
-                    <form className="flex w-full md:w-1/2 rounded-full border border-gray-300">
+                    <form className="flex w-full md:w-1/4 rounded-full border border-gray-300">
                         <input
                             type="text"
-                            className="px-4 py-2 w-full rounded-full focus:outline-none"
+                            className="px-1 py-1 w-full rounded-full focus:outline-none"
                             placeholder="Search"
                         />
                         <button className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 focus:outline-none">
@@ -99,7 +100,7 @@ const Header = () => {
                 <form className="flex w-full rounded-full border border-gray-300 mt-4">
                     <input
                         type="text"
-                        className="px-4 py-2 w-full rounded-full focus:outline-none"
+                        className="px-1 py-1 w-full rounded-full focus:outline-none"
                         placeholder="Search"
                     />
                     <button className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 focus:outline-none">
