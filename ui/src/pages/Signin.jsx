@@ -3,18 +3,22 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { signinStart,signinSuccess,signinFailure } from "../redux/user/userSlice";
 
 function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const dis = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) {
       return;
     }
+    dis(signinStart());
     setIsLoading(true);
     try {
       const response = await axios.post(
@@ -24,12 +28,14 @@ function Signin() {
           password,
         }
       );
-      console.log(response.data.message);
+      dis(signinSuccess(response.data));
       toast.success("Signin successful!");
       localStorage.setItem("access_token", response.data.access_token);
+      localStorage.setItem("email", response.data.email);
+      localStorage.setItem("username", response.data.username);
       navigate("/")
     } catch (error) {
-      console.error(error);
+      dis(signinFailure(error.response.data.message));
       toast.error(error.response.data.message);
     } finally {
       setIsLoading(false);
