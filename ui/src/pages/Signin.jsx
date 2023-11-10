@@ -30,9 +30,6 @@ function Signin() {
       );
       dis(signinSuccess(response.data));
       toast.success("Signin successful!");
-      localStorage.setItem("access_token", response.data.access_token);
-      localStorage.setItem("email", response.data.email);
-      localStorage.setItem("username", response.data.username);
       navigate("/")
     } catch (error) {
       dis(signinFailure(error.response.data.message));
